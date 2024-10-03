@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -17,13 +20,15 @@ public class Participante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String nome;
 
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "atividade_id")
-    private Atividades atividade;
+    @ManyToMany
+    @JoinTable(name = "tb_participante_atividade",
+            joinColumns = @JoinColumn(name = "participante_id"),
+            inverseJoinColumns = @JoinColumn(name = "atividade_id"))
+    private Set<Atividades> atividades = new HashSet<>();
 }

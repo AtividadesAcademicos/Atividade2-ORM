@@ -18,7 +18,6 @@ public class Bloco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     private Integer id;
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
